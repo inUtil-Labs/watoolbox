@@ -106,3 +106,5 @@ paths:
       responses:
         "200":
           description: a public url
+      security: []
+      operationId: /wspic/url
