@@ -1,75 +1,100 @@
+# the production server on this file has to be adjusted, before testing the API
+
 openapi: 3.0.3
 info:
-  title: Whatsapp toolbox
-  description: Fetch whatsapp profile pics and validate whatsapp number registration
+  title: WhatsApp Toolbox API
+  description: This API provides endpoints for fetching WhatsApp profile pictures and validating phone number registrations.
   version: "1.0.0"
   contact:
-    name: inutil labs
+    name: Inutil Labs
+    url: https://inutil-labs.com
     email: contact@inutil-labs.com
 servers:
-  - url: https://{URL}
-    description: ""
+  - url: https://{domain}
+    description: Production server
     variables:
-      URL:
-        default: https://watoolbox.inutil-labs.com
+      domain:
+        default: watoolbox.inutil-labs.com
 paths:
   /about:
     get:
-      tags: []
-      summary: About info
-      description: the about info that a whatsapp user set on the status.
+      summary: Get About Info
+      description: Returns the about info that a WhatsApp user set on their status.
       parameters:
         - name: phone
           in: query
-          description: "phone number on the request"
+          description: The phone number associated with the request (including the country code).
           required: false
           schema:
             type: integer
             default: 34605797764
-            description: a valid phone number, including country code (without +, or 00 at the begining)
+            description: A valid phone number, including country code (without the plus sign or leading double-zero).
       responses:
         "200":
-          description: the about message and the time-date it was set.
+          description: Returns the about message and the timestamp when it was set.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The about message set by the WhatsApp user.
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the about message was set.
       security: []
-      operationId: /about
+      operationId: getAboutInfo
   /wchk:
     get:
-      tags: []
-      summary: Validate WA number
-      description: checks if the number is registered on the whatsapp network
+      summary: Validate WhatsApp Number
+      description: Checks if a given phone number is registered on the WhatsApp network.
       parameters:
         - name: phone
           in: query
-          description: "phone number on the request"
+          description: The phone number to validate (including the country code).
           required: false
           schema:
             type: integer
             default: 34666777888
-            description: a valid phone number, including country code (without +, or 00 at the begining)
+            description: A valid phone number, including country code (without the plus sign or leading double-zero).
       responses:
         "200":
-          description: true or false, depending of the registration status of the number on the request
+          description: Returns a boolean indicating whether the given phone number is registered on the WhatsApp network or not.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isRegistered:
+                    type: boolean
+                    description: Indicates whether the given phone number is registered on the WhatsApp network or not.
       security: []
-      operationId: /wchk
+      operationId: validatePhoneNumber
   /wspic/b64:
     get:
-      tags: []
-      summary: Picture base64
-      description: fetchs the base64 file type of the whatsapp profile picture of the number on the request
+      summary: Fetch WhatsApp Profile Picture (Base64)
+      description: Fetches the base64-encoded binary data for the WhatsApp profile picture of a given phone number.
       parameters:
         - name: phone
           in: query
-          description: "phone number on the request"
+          description: The phone number to fetch the profile picture for (including the country code).
           required: false
           schema:
             type: integer
             default: 34605797764
-            description: a valid phone number, including country code (without +, or 00 at the begining)
+            description: A valid phone number, including country code (without the plus sign or leading double-zero).
       responses:
         "200":
-          description: a base64 binary buffer
+          description: The base64-encoded binary data for the WhatsApp profile picture.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
       security: []
-      operationId: /wspic/b64
+      operationId: fetchProfilePictureBase64
   /wspic/png:
     get:
       tags: []
@@ -87,24 +112,34 @@ paths:
       responses:
         "200":
           description: a png file
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
       security: []
       operationId: /wspic/png
   /wspic/url:
     get:
-      tags: []
-      summary: Picture url
-      description: fetchs the public url of the whatsapp profile picture of the number on the request
+      summary: Fetch WhatsApp profile picture URL
+      description: Fetches the public URL of the WhatsApp profile picture of the number on the request
       parameters:
         - name: phone
           in: query
-          description: "phone number on the request"
+          description: "Phone number on the request"
           required: false
           schema:
             type: integer
             default: 34605797764
-            description: a valid phone number, including country code (without +, or 00 at the begining)
+            description: "A valid phone number, including country code (without + or 00 at the beginning)"
       responses:
         "200":
-          description
+          description: The public URL of the WhatsApp profile picture
+          content:
+            image/png:
+              schema:
+                type: string
+                format: url
       security: []
-      operationId: /wspic/url
+      operationId: fetchWhatsAppProfilePictureURL
+
