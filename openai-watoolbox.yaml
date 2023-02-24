@@ -21,11 +21,11 @@ paths:
       parameters:
         - name: phone
           in: query
-          description: ""
+          description: "phone number on the request"
           required: false
           schema:
-            type: string
-            default: "34605797764"
+            type: integer
+            default: 34605797764
             description: a valid phone number, including country code (without +, or 00 at the begining)
       responses:
         "200":
@@ -40,11 +40,11 @@ paths:
       parameters:
         - name: phone
           in: query
-          description: ""
+          description: "phone number on the request"
           required: false
           schema:
-            type: string
-            default: "34666777888"
+            type: integer
+            default: 34666777888
             description: a valid phone number, including country code (without +, or 00 at the begining)
       responses:
         "200":
@@ -59,11 +59,11 @@ paths:
       parameters:
         - name: phone
           in: query
-          description: ""
+          description: "phone number on the request"
           required: false
           schema:
-            type: string
-            default: "34605797764"
+            type: integer
+            default: 34605797764
             description: a valid phone number, including country code (without +, or 00 at the begining)
       responses:
         "200":
@@ -78,11 +78,11 @@ paths:
       parameters:
         - name: phone
           in: query
-          description: ""
+          description: "phone number on the request"
           required: false
           schema:
-            type: string
-            default: "34605797764"
+            type: integer
+            default: 34605797764
             description: a valid phone number, including country code (without +, or 00 at the begining)
       responses:
         "200":
@@ -97,14 +97,14 @@ paths:
       parameters:
         - name: phone
           in: query
-          description: ""
+          description: "phone number on the request"
           required: false
           schema:
-            type: string
-            default: "34605797764"
+            type: integer
+            default: 34605797764
             description: a valid phone number, including country code (without +, or 00 at the begining)
       responses:
         "200":
-          description: a public url
+          description
       security: []
       operationId: /wspic/url
