@@ -15,7 +15,7 @@
       "description": "",
       "variables": {
         "URL": {
-          "default": "https://watoolbox.inutil-labs.com"
+          "default": "watoolbox.inutil-labs.com"
         }
       }
     }
@@ -155,6 +155,6 @@
         "security": [],
         "operationId": "/wspic/url"
       }
-    },
-    "components": {}
+    }
   }
+}
