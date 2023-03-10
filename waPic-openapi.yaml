@@ -1,0 +1,588 @@
+openapi: 3.0.0
+info:
+  title: WhatsApp Tools API, by inUtil Labs
+  description: >-
+    The WhatsApp Toolbox API is a collection of endpoints that provide various
+    functionalities related to WhatsApp. With this collection, developers can
+    fetch profile pictures, validate phone number registrations, and retrieve
+    About information for any registered phone number.
+
+
+    ---
+
+
+    #### Before you start:
+
+
+    Developers must provide a valid API-key to use the endpoints on this
+    collection, to get a valid api key (you can get one free of charge for
+    limited usage) you must subscribe following this
+    [link](https://rapidapi.com/inutil-inutil-default/api/whatsapp-profile-pic).
+
+
+    When you fork this collection, you need to create an Environment Variable
+    called `X-RapidAPI-Key` and set its value to the API key provided after
+    subscription. All the endpoints on this collection use this API key to
+    authorize requests.
+
+
+    You can also watch these videos and see how it works:
+
+
+    - [How to download a whatsapp profile
+    picture](https://youtu.be/fJPgOvEMdOQ).
+
+    - [Fetch jpg of a whatsapp picture](https://youtu.be/jtjK6e7huQ0).
+
+    - [Validate numbers registered on whatsapp](https://youtu.be/_h5ybzp9UNU).
+        
+
+    ---
+
+
+    #### Description:
+
+
+    The first set of endpoints allows for fetching profile pictures associated
+    with a WhatsApp account. This can be useful in applications where user
+    profile pictures are required. The second set of endpoints validates the
+    phone number registration status and can be used to check whether a phone
+    number is registered with WhatsApp. You can also retrieve the `About`
+    information associated with a phone number.
+
+
+    ---
+
+
+    #### Use cases:
+
+
+    1. Social Media Integration: An application that integrates with WhatsApp
+    can utilize the API to fetch profile pictures associated with a user's
+    account. For example, a social media platform that allows users to link
+    their WhatsApp account can display their WhatsApp profile picture as their
+    profile picture on the social media platform.
+
+    2. Identity Verification: The API can be used to verify if a given phone
+    number is registered with WhatsApp. This can be useful for identity
+    verification in applications such as financial services or e-commerce
+    platforms where a verified phone number is required for user authentication
+    and security.
+
+    3. Chat Application: An application that enables chat functionality can
+    utilize the API to display profile pictures associated with a user's
+    WhatsApp account. Additionally, the About information associated with a
+    phone number can be used to provide context and additional information about
+    a user to other chat participants.
+
+    4. Contact Management: An application that manages contacts can use the API
+    to validate if a phone number is registered with WhatsApp and retrieve
+    associated profile pictures and About information. This can be useful for
+    organizing contacts and providing additional information about contacts
+    stored in the application.
+
+    5. Messaging Automation: A business that utilizes WhatsApp for customer
+    service can use the API to validate phone number registration and retrieve
+    associated profile pictures and About information. This can be used to
+    automate messaging and provide personalized experiences to customers.
+        
+
+    The API is designed to be simple and easy to use. Developers can integrate
+    these endpoints into their applications to provide better functionality and
+    user experience. The API is accessible via HTTPS requests, and developers
+    can use any programming language that supports HTTP requests to interact
+    with the API.
+
+
+    ---
+
+
+    #### Support:
+
+
+    Contact inUtil Labs Support:  
+
+    [contact@inutil-labs.com](mailto:contact@inutil-labs.com)
+
+
+    ---
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+components:
+  securitySchemes:
+    apikeyAuth:
+      type: http
+      scheme: apikey
+security:
+  - apikeyAuth: []
+tags:
+  - name: Fetch Profile Picture
+    description: >-
+      This folder includes multiple endpoints that allow you to retrieve
+      Whatsapp profile pictures based on a phone number. As a developer you can
+      chose the desired format, and use the endpoint that will return the
+      profile picture in that format.
+
+
+      The "Fetch Profile Picture" folder provides endpoints that retrieve
+      WhatsApp profile pictures in different formats.  
+
+      These formats include URL, PNG/JPG file, and base64-encoded string.
+  - name: Validate
+    description: >-
+      The folder contains two endpoints that enable developers to validate phone
+      numbers registered with WhatsApp and retrieve the About information for
+      the registered number.
+paths:
+  /wspic/url:
+    get:
+      tags:
+        - Fetch Profile Picture
+      summary: url of profile pic
+      description: >-
+        Fetches the public URL of the WhatsApp profile picture of the number on
+        the request
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: image/png
+        - name: phone
+          in: query
+          schema:
+            type: integer
+          description: Phone number on the request (including the country code).
+          example: '34605797764'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Tue, 07 Mar 2023 18:16:58 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server-Timing:
+              schema:
+                type: string
+                example: cf-q-config;dur=6.0000002122251e-06
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            CF-RAY:
+              schema:
+                type: string
+                example: 7a44d51f5ef63888-IAD
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400, h3-29=":443"; ma=86400
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tdOTchtqeU451G2tw4dr01702QlHhlRtJJ52aD%2BCk9EA4TVHdPvipOQ0XgVXlbE8b64ix2qR93xuI4Yh5guU%2Be6p%2B5rczGGgthhQ1YJq2r2%2BN2krKzB1yZFZfZLlkqVSjmo%3D"}],"group":"cf-nel","max_age":604800}
+            Server:
+              schema:
+                type: string
+                example: RapidAPI-1.2.8
+            X-RapidAPI-Version:
+              schema:
+                type: string
+                example: 1.2.8
+            X-RapidAPI-Region:
+              schema:
+                type: string
+                example: AWS - us-east-1
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                example-0:
+                  summary: url response
+                  value: >-
+                    https://pps.whatsapp.net/v/t61.24694-24/298715344_1230724050818935_7636553019794367611_n.jpg?ccb=11-4&oh=01_AdQiqGC3T3xz0t7Px2P_z-854G-OQGoURUquk_06g9Fd8A&oe=6414941B
+                example-1:
+                  summary: response if privacy settings set
+                  value: >-
+                    Image is unavailable; possibily due to user privacy
+                    settings.
+  /wspic/png:
+    get:
+      tags:
+        - Fetch Profile Picture
+      summary: jpg profile pic
+      description: >-
+        fetchs the png type file of the whatsapp profile picture of the number
+        on the request
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: image/png
+        - name: phone
+          in: query
+          schema:
+            type: integer
+          description: Phone number on the request (including the country code).
+          example: '34605797764'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: image/png
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Image is unavailable; possibily due to user privacy settings.
+  /wspic/b64:
+    get:
+      tags:
+        - Fetch Profile Picture
+      summary: base64 profile pic
+      description: >-
+        Fetches the binary data for the WhatsApp profile picture of a given
+        phone number, encoded in base64.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/octet-stream
+        - name: phone
+          in: query
+          schema:
+            type: integer
+          description: Phone number on the request (including the country code).
+          example: '34605797764'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Tue, 07 Mar 2023 18:16:08 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server-Timing:
+              schema:
+                type: string
+                example: cf-q-config;dur=5.9999983932357e-06
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            CF-RAY:
+              schema:
+                type: string
+                example: 7a44d3e549812064-IAD
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400, h3-29=":443"; ma=86400
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=crGbK4ORaxRUst%2BbJpzI4tB7gyJ0MyZeBo8Hgm65HOXEaXl%2BckpPEGWWSb8fRSuaC%2FqBFcDPJgDasLTx4GQeJkKGW3Gn8akC%2FkUhEoW3Ayb%2FNxtn6gzWhueQhP8m8a0oMJI%3D"}],"group":"cf-nel","max_age":604800}
+            Server:
+              schema:
+                type: string
+                example: RapidAPI-1.2.8
+            X-RapidAPI-Version:
+              schema:
+                type: string
+                example: 1.2.8
+            X-RapidAPI-Region:
+              schema:
+                type: string
+                example: AWS - us-east-1
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                example-0:
+                  summary: Example base64 response
+                  value: >-
+                    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
+                example-1:
+                  summary: response if privacy settings
+                  value: >-
+                    Image is unavailable; possibily due to user privacy
+                    settings.
+  /wchk:
+    get:
+      tags:
+        - Validate
+      summary: Validate Number
+      description: >-
+        Checks if a given phone number is registered on the WhatsApp network.
+        Returns a boolean (true of false) indicating whether the given phone
+        number is registered on the WhatsApp network or not.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: phone
+          in: query
+          schema:
+            type: integer
+          description: Phone number on the request (including the country code).
+          example: '34605797764'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Tue, 07 Mar 2023 17:20:20 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server-Timing:
+              schema:
+                type: string
+                example: cf-q-config;dur=6.0000020312145e-06
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            CF-RAY:
+              schema:
+                type: string
+                example: 7a44822b0e876ff7-IAD
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400, h3-29=":443"; ma=86400
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=pnQ7q39dLlgFxkknZh%2BccO%2FDOKbRz1SBeTEkoK67PhVaX36NhnFrZbekXHYNvbX%2BAps5gQ%2BDW8nG1J2ipJ68anhCdNgVWykqlgJ06cz%2Fky%2BpikIuLfpEyJXL4GNlIZOntRE%3D"}],"group":"cf-nel","max_age":604800}
+            Server:
+              schema:
+                type: string
+                example: RapidAPI-1.2.8
+            X-RapidAPI-Version:
+              schema:
+                type: string
+                example: 1.2.8
+            X-RapidAPI-Region:
+              schema:
+                type: string
+                example: AWS - us-east-1
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                example-0:
+                  summary: 'Example: ''false'' if number does not exist'
+                  value: 'false'
+                example-1:
+                  summary: 'Example: ''true'' if number is registered'
+                  value: 'true'
+  /about:
+    get:
+      tags:
+        - Validate
+      summary: Fetch About Info
+      description: >-
+        Returns the about info that a WhatsApp user set on its status. The value
+        returned is a JSON object including two properties: about and setAt
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: phone
+          in: query
+          schema:
+            type: integer
+          description: Phone number on the request (including the country code).
+          example: '34605797764'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Tue, 07 Mar 2023 17:27:29 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            Etag:
+              schema:
+                type: string
+                example: W/"3d-1jSVdpKwBxsH+D4S11RAsx/wHtY"
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server-Timing:
+              schema:
+                type: string
+                example: cf-q-config;dur=1.5999999959604e-05
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            CF-RAY:
+              schema:
+                type: string
+                example: 7a448ca85ab59c19-IAD
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400, h3-29=":443"; ma=86400
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=UkH5xML31xrKIttmNfiOYQIezsZwybeB9a%2B8582DexfYFPhgMxAUXFi69rS7gQTNO8DgKZValSX13cn1KLU9LXeDax3ZfGS%2FoknOl2rsLFoUbgwlrsE5DYjiazm2VM0pqFo%3D"}],"group":"cf-nel","max_age":604800}
+            Server:
+              schema:
+                type: string
+                example: RapidAPI-1.2.8
+            X-RapidAPI-Version:
+              schema:
+                type: string
+                example: 1.2.8
+            X-RapidAPI-Region:
+              schema:
+                type: string
+                example: AWS - us-east-1
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Fetch About Info
+                  value:
+                    about: By inUtil Labs
+                    setAt: '2022-11-10T21:01:24.000Z'
+                example-1:
+                  summary: Fetch About Info
+                  value:
+                    privacy: The phone owner decided not to share this information.
